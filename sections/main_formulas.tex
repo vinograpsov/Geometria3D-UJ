@@ -49,3 +49,114 @@ Rzut wektora \( \mathbf{W} \) na \( \mathbf{V} \) jest określony jako:
 \noindent
 \textbf{Opis:} Rzut wektora \( \mathbf{W} \) na \( \mathbf{V} \) to wektor będący projekcją \( \mathbf{W} \) na kierunek \( \mathbf{V} \).
 
+
+
+
+\vspace{1em}
+\noindent
+Każdy układ liniowo niezależnych wektorów \( \mathbf{U}, \mathbf{V} \) i \( \mathbf{W} \) można przekształcić w ortonormalny układ \( \mathbf{u}, \mathbf{v}, \mathbf{w} \) za pomocą algorytmu ortonormalizacji Grama-Schmidta:
+
+\[
+\mathbf{u} = \frac{\mathbf{U}}{\|\mathbf{U}\|}
+\]
+
+\[
+\mathbf{v} = \frac{\mathbf{V} - \text{proj}_{\mathbf{u}} \mathbf{V}}{\|\mathbf{V} - \text{proj}_{\mathbf{u}} \mathbf{V}\|}
+\]
+
+\[
+\mathbf{w} = \frac{\mathbf{W} - \text{proj}_{\mathbf{u}} \mathbf{W} - \text{proj}_{\mathbf{v}} \mathbf{W}}{\|\mathbf{W} - \text{proj}_{\mathbf{u}} \mathbf{W} - \text{proj}_{\mathbf{v}} \mathbf{W}\|}
+\]
+
+\vspace{1em}
+\noindent
+\textbf{Opis:} Algorytm ortonormalizacji Grama-Schmidta służy do przekształcenia układu liniowo niezależnych wektorów w układ ortonormalny (wektory wzajemnie prostopadłe o długości 1). Proces polega na:
+- Normalizacji pierwszego wektora \( \mathbf{U} \),
+- Usuwaniu rzutów kolejnych wektorów na wcześniejsze i normalizacji powstałych wyników.
+
+
+
+% not confident about this 
+\vspace{1em}
+\noindent
+Wyznacznik macierzy \( M - \lambda I \) jest obliczany jako:
+
+\[
+\text{det}(M - \lambda I) = 
+\begin{vmatrix}
+1 - \lambda & 0 & 1 \\
+0 & 1 - \lambda & 0 \\
+1 & 0 & 1 - \lambda
+\end{vmatrix}
+\]
+
+\vspace{1em}
+\noindent
+\textbf{Opis:} Wzór ten przedstawia wyznacznik macierzy \( M - \lambda I \), gdzie \( \lambda \) to wartość własna (eigenvalue), a \( I \) to macierz jednostkowa. Wyznacznik jest wykorzystywany w obliczaniu wartości własnych macierzy oraz w analizie jej własności algebraicznych.
+
+
+
+\vspace{1em}
+\noindent
+Wyznacznik macierzy \( 3 \times 3 \) można rozwinąć wzdłuż pierwszego wiersza w następujący sposób:
+
+% need to make better formatting
+\begin{multline*}
+    \begin{vmatrix}
+    M_{xx} & M_{xy} & M_{xz} \\
+    M_{yx} & M_{yy} & M_{yz} \\
+    M_{zx} & M_{zy} & M_{zz}
+    \end{vmatrix}
+    =
+    M_{xx}(-1)^{1+1}
+    \begin{vmatrix}
+    M_{yy} & M_{yz} \\
+    M_{zy} & M_{zz}
+    \end{vmatrix} \\
+    + M_{xy}(-1)^{1+2}
+    \begin{vmatrix}
+    M_{yx} & M_{yz} \\
+    M_{zx} & M_{zz}
+    \end{vmatrix}
+    + M_{xz}(-1)^{1+3}
+    \begin{vmatrix}
+    M_{yx} & M_{yy} \\
+    M_{zx} & M_{zy}
+    \end{vmatrix}
+    \end{multline*}
+    
+    \begin{align*}
+    &= M_{xx}M_{yy}M_{zz} - M_{xx}M_{yz}M_{zy} \\
+    &\quad - M_{xy}M_{yx}M_{zz} + M_{xy}M_{yz}M_{zx} \\
+    &\quad + M_{xz}M_{yx}M_{zy} - M_{xz}M_{yy}M_{zx}
+    \end{align*}
+
+\vspace{1em}
+\noindent
+\textbf{Opis:} Wyznacznik macierzy \( 3 \times 3 \) oblicza się, rozwijając go wzdłuż wiersza lub kolumny. Wzór ten przedstawia rozwinięcie wzdłuż pierwszego wiersza z zastosowaniem wyznaczników macierzy \( 2 \times 2 \) dla odpowiednich podmacierzy.
+
+
+
+
+% need to make better formatting
+\vspace{1em}
+\noindent
+Iloczyn dwóch macierzy \( M \) i \( K \) można zapisać jako:
+
+\[
+\resizebox{\textwidth}{!}{$
+MK =
+\begin{pmatrix}
+M_{xx}K_{xx} + M_{xy}K_{yx} + M_{xz}K_{zx} & M_{xx}K_{xy} + M_{xy}K_{yy} + M_{xz}K_{zy} & M_{xx}K_{xz} + M_{xy}K_{yz} + M_{xz}K_{zz} \\
+M_{yx}K_{xx} + M_{yy}K_{yx} + M_{yz}K_{zx} & M_{yx}K_{xy} + M_{yy}K_{yy} + M_{yz}K_{zy} & M_{yx}K_{xz} + M_{yy}K_{yz} + M_{yz}K_{zz} \\
+M_{zx}K_{xx} + M_{zy}K_{yx} + M_{zz}K_{zx} & M_{zx}K_{xy} + M_{zy}K_{yy} + M_{zz}K_{zy} & M_{zx}K_{xz} + M_{zy}K_{yz} + M_{zz}K_{zz}
+\end{pmatrix}
+$}
+\]
+
+
+\vspace{1em}
+\noindent
+\textbf{Opis:} Iloczyn dwóch macierzy \( M \) i \( K \) oblicza się jako sumę iloczynów odpowiednich wierszy macierzy \( M \) i kolumn macierzy \( K \). Wynikiem jest nowa macierz, której elementy są obliczane zgodnie z powyższym wzorem.
+
+

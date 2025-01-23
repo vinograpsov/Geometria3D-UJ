@@ -2,6 +2,9 @@
 
 Repozytorium zostało stworzone do wspólnego przygotowania się do egzaminu z Geometrii 3D. Pomysł polega na tym, aby wspólnie pracować nad konspektami, rozwiązywać zadania i sporządzać notatki na tematy związane z egzaminem, które finalnie zostaną wygenerowane do pliku PDF. Jeśli chcesz po prostu podzielić się swoimi notatkami lub czymś podobnym, dodaj je do repozytorium w odpowiednich folderach. Jeśli takiego folderu nie ma, po prostu go utwórz :)
 
+## Nie umiesz LaTeXa?
+To nie jest problem! Wystarczy, że dodasz swoje notatki, a pozostale osoby zajma się ich konwersją do LaTeXa. Lub ruwnirz ChatGPT może pomóc w konwersji tekstu do LaTeXa, z mojego doświadczenia działa to całkiem nieźle.
+
 ## Metoda kompilacji
 
 Osobiście używam **MiKTeX**, ale jeśli nie chcesz instalować tego narzędzia, możesz skorzystać z kompilatorów online, takich jak **Overleaf**. Nie wiem jednak, jak działają one z GitHubem. Jeśli działa to źle, wystarczy pobrać repozytorium i skopiować je do kompilatora online.
