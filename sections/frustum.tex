@@ -1,0 +1,100 @@
+\section{Frustum}
+
+\subsection*{1. Wyznacz płaszczyzny bryły widzenia}
+
+Podane są parametry kąt widzenia \( \beta \), rozdzielczość ekranu oraz zakres rysowania \( n, f \):
+
+\begin{enumerate}
+    \item[(a)] \( \beta = 90^\circ, \quad 1280 \times 960, \quad n = 1, \quad f = 100 \)
+    \item[(b)] \( \beta = 45^\circ, \quad 1920 \times 1080, \quad n = 1, \quad f = 100 \)
+    \item[(c)] \( \beta = 60^\circ, \quad 1024 \times 768, \quad n = 1, \quad f = 100 \)
+\end{enumerate}
+
+\subsection*{2. Sprawdź, czy punkt \( P \) leży wewnątrz bryły widzenia}
+
+\begin{enumerate}
+    \item[(a)] \( P = \begin{bmatrix} 0 \\ 0 \\ -10 \end{bmatrix}, \quad a = 4:3, \quad e = 1, \quad n = 1, \quad f = 100 \)
+    \item[(b)] \( P = \begin{bmatrix} 10 \\ 10 \\ -10 \end{bmatrix}, \quad a = 16:9, \quad e = 1, \quad n = 1, \quad f = 100 \)
+    \item[(c)] \( P = \begin{bmatrix} 15 \\ 15 \\ 10 \end{bmatrix}, \quad a = 16:10, \quad e = 2, \quad n = 1, \quad f = 100 \)
+\end{enumerate}
+
+\subsection*{3. Wyznacz wektor normalny \( N \) i określ relacje punktu \( O \)}
+
+Dane są płaszczyzny \( A, B, C \) zdefiniowane macierzą punktów:
+
+\begin{enumerate}
+    \item[(a)] 
+    \[
+    A = \begin{bmatrix} 0 & 5 & 0 \\ 0 & 0 & 3 \\ 0 & 0 & 0 \end{bmatrix}, \quad
+    B = \begin{bmatrix} 0 & 0 & 5 \\ -1 & -1 & -1 \\ 0 & 6 & 0 \end{bmatrix}, \quad
+    C = \begin{bmatrix} 1 & 1 & 1 \\ 0 & 0 & 3 \\ 0 & 9 & 0 \end{bmatrix}
+    \]
+    
+    \[
+    O = \begin{bmatrix} 2 \\ 1 \\ 3 \end{bmatrix}
+    \]
+
+    \item[(b)] 
+    \[
+    A = \begin{bmatrix} 0 & 15 & 0 \\ 0 & 0 & 3 \\ 1 & 1 & 1 \end{bmatrix}, \quad
+    B = \begin{bmatrix} 0 & 0 & 5 \\ -1 & -1 & -1 \\ 0 & 6 & 0 \end{bmatrix}, \quad
+    C = \begin{bmatrix} 1 & 1 & 1 \\ 0 & 0 & 3 \\ 0 & 9 & 0 \end{bmatrix}
+    \]
+    
+    \[
+    O = \begin{bmatrix} 3 \\ 2 \\ 1 \end{bmatrix}
+    \]
+
+    \item[(c)] 
+    \[
+    A = \begin{bmatrix} 1 & 2 & 2 \\ 1 & 2 & 2 \\ 1 & 1 & 2 \end{bmatrix}, \quad
+    B = \begin{bmatrix} 0 & 2 & 4 \\ 0 & 2 & 2 \\ 0 & 0 & 0 \end{bmatrix}, \quad
+    C = \begin{bmatrix} -1 & -1 & 0 \\ -1 & -1 & 0 \\ -1 & 0 & 0 \end{bmatrix}
+    \]
+    
+    \[
+    O = \begin{bmatrix} -1 \\ -1 \\ -1 \end{bmatrix}
+    \]
+
+\end{enumerate}
+\subsection*{4. Sprawdź czy punkty \( P_1 \) i \( P_2 \) leżą wewnątrz bryły widzenia (frustum) zdefiniowanej płaszczyznami:}
+
+\[
+\begin{array}{c|cccccc}
+    & \text{bliska} & \text{daleka} & \text{lewa} & \text{prawa} & \text{górna} & \text{dolna} \\
+    \hline
+    & 0 & 0 & \sqrt{2}/2 & -\sqrt{2}/2 & 0 & 0 \\
+    n & 0 & 0 & 0 & 0 & \sqrt{2}/2 & -\sqrt{2}/2 \\
+    a & -1 & 1 & -\sqrt{2}/2 & -\sqrt{2}/2 & \sqrt{2}/2 & -\sqrt{2}/2 \\
+    & -1 & 100 & 0 & 0 & 0 & 0 \\
+\end{array}
+\]
+
+\[
+P_1 = \begin{bmatrix} 10 \\ 0 \\ -10 \end{bmatrix}, \quad
+P_2 = \begin{bmatrix} 0 \\ 10 \\ -5 \end{bmatrix}
+\]
+
+
+\subsection*{5. Sprawdź czy sfery w punktach \( P_1 \) i \( P_2 \), i promieniach \( r_1 \) i \( r_2 \) leżą wewnątrz bryły widzenia (frustum) zdefiniowanej płaszczyznami:}
+
+\[
+\begin{array}{c|cccccc}
+    & \text{bliska} & \text{daleka} & \text{lewa} & \text{prawa} & \text{górna} & \text{dolna} \\
+    \hline
+    N & 0 & 0 & \sqrt{2}/2 & -\sqrt{2}/2 & 0 & 0 \\
+    & 0 & 0 & 0 & 0 & \sqrt{2}/2 & -\sqrt{2}/2 \\
+    a & -1 & 1 & -\sqrt{2}/2 & -\sqrt{2}/2 & \sqrt{2}/2 & -\sqrt{2}/2 \\
+    & -1 & 100 & 0 & 0 & 0 & 0 \\
+\end{array}
+\]
+
+\[
+P_1 = \begin{bmatrix} 10 \\ 0 \\ -10 \end{bmatrix}, \quad r_1 = 3
+\]
+
+\[
+P_2 = \begin{bmatrix} 0 \\ 10 \\ -5 \end{bmatrix}, \quad r_2 = 2
+\]
+
+
