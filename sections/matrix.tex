@@ -3,6 +3,37 @@
 
 \subsection*{1. Oblicz wyznaczniki dla poniższych macierzy i jeśli to możliwe wyznacz macierze odwrotne.}
 
+\begin{multline*}
+    \begin{vmatrix}
+    M_{xx} & M_{xy} & M_{xz} \\
+    M_{yx} & M_{yy} & M_{yz} \\
+    M_{zx} & M_{zy} & M_{zz}
+    \end{vmatrix}
+    =
+    M_{xx}(-1)^{1+1}
+    \begin{vmatrix}
+    M_{yy} & M_{yz} \\
+    M_{zy} & M_{zz}
+    \end{vmatrix} \\
+    + M_{xy}(-1)^{1+2}
+    \begin{vmatrix}
+    M_{yx} & M_{yz} \\
+    M_{zx} & M_{zz}
+    \end{vmatrix}
+    + M_{xz}(-1)^{1+3}
+    \begin{vmatrix}
+    M_{yx} & M_{yy} \\
+    M_{zx} & M_{zy}
+    \end{vmatrix}
+    \end{multline*}
+    
+    \begin{align*}
+    &= M_{xx}M_{yy}M_{zz} - M_{xx}M_{yz}M_{zy} \\
+    &\quad - M_{xy}M_{yx}M_{zz} + M_{xy}M_{yz}M_{zx} \\
+    &\quad + M_{xz}M_{yx}M_{zy} - M_{xz}M_{yy}M_{zx}
+    \end{align*}
+
+
 \begin{enumerate}
     \item[(a)] \( M = \begin{bmatrix} 2 & 5 \\ 2 & 7 \end{bmatrix} \)
     
@@ -48,6 +79,34 @@
 \end{enumerate}
 
 \subsection*{5. Wykonaj operacje skalowania macierzą \( M \) dla macierzy wierzchołków \( N \).}
+
+
+\noindent
+Macierz skalowania w trójwymiarowej przestrzeni można zapisać jako:
+\[
+S(\alpha,\beta,\gamma) 
+\;=\;
+\begin{pmatrix}
+\alpha & 0      & 0 \\
+0      & \beta  & 0 \\
+0      & 0      & \gamma
+\end{pmatrix},
+\]
+gdzie \(\alpha,\beta,\gamma\) to dodatnie liczby rzeczywiste.
+
+\bigskip
+\noindent
+Działanie tej transformacji na wektor \(\mathbf{V} = (V_x, V_y, V_z)^\top\) daje wektor
+\[
+\mathbf{V}' \;=\; S(\alpha,\beta,\gamma)\,\mathbf{V}
+\;=\;
+\begin{pmatrix}
+\alpha\,V_x \\
+\beta\,V_y \\
+\gamma\,V_z
+\end{pmatrix}.
+\]
+
 
 \begin{enumerate}
         \item[(a)] 

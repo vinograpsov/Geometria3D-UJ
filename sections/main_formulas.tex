@@ -76,23 +76,25 @@ Każdy układ liniowo niezależnych wektorów \( \mathbf{U}, \mathbf{V} \) i \( 
 
 
 
-% not confident about this 
-\vspace{1em}
-\noindent
-Wyznacznik macierzy \( M - \lambda I \) jest obliczany jako:
+% % not confident about this
+% rework 
+% \vspace{1em}
+% \noindent
+% Diagonalizacja Macierzy
+% Wyznacznik macierzy \( M - \lambda I \) jest obliczany jako:
 
-\[
-\text{det}(M - \lambda I) = 
-\begin{vmatrix}
-1 - \lambda & 0 & 1 \\
-0 & 1 - \lambda & 0 \\
-1 & 0 & 1 - \lambda
-\end{vmatrix}
-\]
+% \[
+% \text{det}(M - \lambda I) = 
+% \begin{vmatrix}
+% 1 - \lambda & 0 & 1 \\
+% 0 & 1 - \lambda & 0 \\
+% 1 & 0 & 1 - \lambda
+% \end{vmatrix}
+% \]
 
-\vspace{1em}
-\noindent
-\textbf{Opis:} Wzór ten przedstawia wyznacznik macierzy \( M - \lambda I \), gdzie \( \lambda \) to wartość własna (eigenvalue), a \( I \) to macierz jednostkowa. Wyznacznik jest wykorzystywany w obliczaniu wartości własnych macierzy oraz w analizie jej własności algebraicznych.
+% \vspace{1em}
+% \noindent
+% \textbf{Opis:} Wzór ten przedstawia wyznacznik macierzy \( M - \lambda I \), gdzie \( \lambda \) to wartość własna (eigenvalue), a \( I \) to macierz jednostkowa. Wyznacznik jest wykorzystywany w obliczaniu wartości własnych macierzy oraz w analizie jej własności algebraicznych.
 
 
 
@@ -159,4 +161,326 @@ $}
 \noindent
 \textbf{Opis:} Iloczyn dwóch macierzy \( M \) i \( K \) oblicza się jako sumę iloczynów odpowiednich wierszy macierzy \( M \) i kolumn macierzy \( K \). Wynikiem jest nowa macierz, której elementy są obliczane zgodnie z powyższym wzorem.
 
+\vspace{1em}
+\noindent
+\textbf{Metoda Gaussa--Jordana}
+
+
+\[
+\left[
+\begin{array}{c|c}
+M & I
+\end{array}
+\right]
+\;\xrightarrow{\text{operacje elementarne}}
+\left[
+\begin{array}{c|c}
+I & M^{-1}
+\end{array}
+\right].
+\]
+
+\vspace{1em}
+\noindent
+\textbf{Opis:} 
+Metoda Gaussa--Jordana polega na dołączeniu do macierzy $M$ macierzy jednostkowej $I$ (w postaci rozszerzonej) i wykonaniu na niej elementarnych operacji na wierszach. Po sprowadzeniu lewej strony do $I$, prawa strona staje się macierzą odwrotną $M^{-1}$.
+
+
+\textbf{Przykład (niewielka macierz $2 \times 2$)}
+
+Rozważmy macierz:
+\[
+M \;=\;
+\begin{pmatrix}
+1 & 2 \\
+3 & 4
+\end{pmatrix}.
+\]
+Aby znaleźć $M^{-1}$ metodą Gaussa--Jordana, tworzymy macierz rozszerzoną:
+\[
+\left[
+\begin{array}{cc|cc}
+1 & 2 & 1 & 0 \\
+3 & 4 & 0 & 1
+\end{array}
+\right].
+\]
+
+\noindent
+\textbf{Krok 1.} Wyzeruj elementy poniżej pierwszego przegubowego (tzw. pivotu) w pierwszej kolumnie:
+\[
+R_2 \,\leftarrow\, R_2 - 3\,R_1,
+\]
+co daje:
+\[
+\left[
+\begin{array}{cc|cc}
+1 & 2 & 1 & 0 \\
+0 & -2 & -3 & 1
+\end{array}
+\right].
+\]
+
+\noindent
+\textbf{Krok 2.} Unormuj drugi wiersz (aby mieć jedynkę na przekątnej):
+\[
+R_2 \,\leftarrow\, -\tfrac12\,R_2
+\;\;\Longrightarrow\;\;
+\left[
+\begin{array}{cc|cc}
+1 & 2 & 1 & 0 \\
+0 & 1 & \tfrac32 & -\tfrac12
+\end{array}
+\right].
+\]
+
+\noindent
+\textbf{Krok 3.} Wyzeruj element powyżej nowego pivotu (w pierwszym wierszu, drugim \mbox{stolcu}):
+\[
+R_1 \,\leftarrow\, R_1 - 2\,R_2,
+\]
+czyli
+\[
+\left[
+\begin{array}{cc|cc}
+1 & 0 & 1 - 2\cdot\tfrac32 & 0 - 2\cdot\bigl(-\tfrac12\bigr) \\
+0 & 1 & \tfrac32 & -\tfrac12
+\end{array}
+\right]
+=
+\left[
+\begin{array}{cc|cc}
+1 & 0 & -2 & 1 \\
+0 & 1 & \tfrac32 & -\tfrac12
+\end{array}
+\right].
+\]
+
+\noindent
+\textbf{Wynik:} Po lewej stronie mamy macierz jednostkową, a po prawej macierz odwrotną $M^{-1}$:
+\[
+M^{-1} 
+\;=\;
+\begin{pmatrix}
+-2 & 1 \\
+\tfrac{3}{2} & -\tfrac{1}{2}
+\end{pmatrix}.
+\]
+
+
+
+
+
+\vspace{1em}
+\noindent
+Macierze obrotu o kąt \(\theta\) w przestrzeni trójwymiarowej:
+
+\[
+R_x(\theta) \;=\;
+\begin{pmatrix}
+1 & 0 & 0 \\
+0 & \cos\theta & -\sin\theta \\
+0 & \sin\theta & \cos\theta
+\end{pmatrix},
+\quad
+R_y(\theta) \;=\;
+\begin{pmatrix}
+\cos\theta & 0 & \sin\theta \\
+0 & 1 & 0 \\
+-\sin\theta & 0 & \cos\theta
+\end{pmatrix},
+\quad
+R_z(\theta) \;=\;
+\begin{pmatrix}
+\cos\theta & -\sin\theta & 0 \\
+\sin\theta & \cos\theta & 0 \\
+0 & 0 & 1
+\end{pmatrix}.
+\]
+
+\noindent
+\textbf{Opis:} Powyższe macierze reprezentują obroty o kąt \(\theta\) wokół kolejno osi \(x\), \(y\) i~\(z\). Każda z nich może służyć do transformacji wektorów w~\(\mathbb{R}^3\) w~celu wykonania obrotu o~zadany kąt wokół wskazanej osi.
+
+
+
+
+
+
+
+% -------------- Diagonalizacja macierzy ----------------
+
+\vspace{1em}
+\noindent
+
+Diagonalizacja macierzy \(M\) polega na znalezieniu takiej macierzy przejścia \(P\) oraz macierzy diagonalnej \(D\), aby zachodziła równość:
+\[
+M \;=\; P \,D\, P^{-1}.
+\]
+Macierz diagonalna \(D\) zawiera wartości własne (ang.~\emph{eigenvalues}) macierzy \(M\) na głównej przekątnej, natomiast kolumny macierzy \(P\) są wektorami własnymi (ang.~\emph{eigenvectors}) odpowiadającymi tym wartościom własnym.
+
+
+\begin{figure}[h!]
+    \centering
+    \begin{equation*}
+    \det(M - \lambda I) 
+    \;=\;
+    \begin{vmatrix}
+    1 - \lambda & 0 & 1 \\
+    0 & 1 - \lambda & 0 \\
+    1 & 0 & 1 - \lambda
+    \end{vmatrix}.
+    \end{equation*}
+    \caption{Wyznacznik macierzy $(M - \lambda I)$ dla przykładowej macierzy $3\times3$.}
+    \label{fig:matrix-determinant}
+\end{figure}
+
+
+\subsection{Przykład diagonalizacji prostej macierzy \(2 \times 2\)}
+
+Rozważmy macierz:
+\[
+M \;=\;
+\begin{pmatrix}
+2 & 1 \\
+0 & 3
+\end{pmatrix}.
+\]
+Chcemy znaleźć taką macierz \(P\) i macierz diagonalną \(D\), aby:
+\[
+M = P\,D\,P^{-1}.
+\]
+
+\paragraph{Krok 1: Znalezienie wartości własnych.}
+Wartości własne \(\lambda\) otrzymujemy, rozwiązując równanie:
+\[
+\det(M - \lambda I) \;=\; 0.
+\]
+W naszym przypadku:
+\[
+M - \lambda I \;=\;
+\begin{pmatrix}
+2-\lambda & 1 \\
+0 & 3-\lambda
+\end{pmatrix}.
+\]
+Zatem:
+\[
+\det(M - \lambda I) 
+\;=\; (2-\lambda)(3-\lambda) - (1 \cdot 0)
+\;=\; (2-\lambda)(3-\lambda).
+\]
+Równanie \(\det(M - \lambda I) = 0\) daje:
+\[
+(2-\lambda)(3-\lambda) = 0
+\;\;\Longrightarrow\;\;
+\lambda_1 = 2, 
+\quad \lambda_2 = 3.
+\]
+
+\paragraph{Krok 2: Znalezienie wektorów własnych.}
+Dla każdej wartości własnej \(\lambda_i\) rozwiązujemy układ:
+\[
+(M - \lambda_i I)\mathbf{v}_i = \mathbf{0},
+\]
+aby otrzymać wektor własny \(\mathbf{v}_i\).
+
+\subparagraph{Dla \(\lambda_1 = 2\):}
+\[
+M - 2I 
+\;=\;
+\begin{pmatrix}
+2-2 & 1 \\
+0 & 3-2
+\end{pmatrix}
+\;=\;
+\begin{pmatrix}
+0 & 1 \\
+0 & 1
+\end{pmatrix}.
+\]
+Układ \(\begin{pmatrix}0 & 1\\0 & 1\end{pmatrix} \begin{pmatrix}v_x\\v_y\end{pmatrix} = \begin{pmatrix}0\\0\end{pmatrix}\)
+oznacza, że \(v_y = 0\). Nie ma warunku na \(v_x\), więc bierzemy \(v_x = 1\). 
+Zatem wektor własny:
+\[
+\mathbf{v}_1 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}.
+\]
+
+\subparagraph{Dla \(\lambda_2 = 3\):}
+\[
+M - 3I 
+\;=\;
+\begin{pmatrix}
+2-3 & 1 \\
+0 & 3-3
+\end{pmatrix}
+\;=\;
+\begin{pmatrix}
+-1 & 1 \\
+0  & 0
+\end{pmatrix}.
+\]
+Układ \(\begin{pmatrix}-1 & 1\\0 & 0\end{pmatrix}\begin{pmatrix}v_x\\v_y\end{pmatrix} = \begin{pmatrix}0\\0\end{pmatrix}\)
+daje równość \(-v_x + v_y = 0\), czyli \(v_y = v_x\). Możemy wybrać \(v_x = 1\), wtedy \(v_y = 1\).
+Zatem wektor własny:
+\[
+\mathbf{v}_2 = \begin{pmatrix} 1 \\ 1 \end{pmatrix}.
+\]
+
+\paragraph{Krok 3: Zbudowanie macierzy \(P\) i macierzy \(D\).}
+Kolumny macierzy \(P\) to wektory własne \(\mathbf{v}_1, \mathbf{v}_2\). Zatem:
+\[
+P \;=\;
+\begin{pmatrix}
+1 & 1 \\
+0 & 1
+\end{pmatrix}.
+\]
+Macierz diagonalna \(D\) zawiera wartości własne \(\lambda_1, \lambda_2\) na głównej przekątnej (w tej samej kolejności co kolumny w \(P\)):
+\[
+D \;=\;
+\begin{pmatrix}
+2 & 0 \\
+0 & 3
+\end{pmatrix}.
+\]
+
+\paragraph{Krok 4: Sprawdzenie równości \(M = P D P^{-1}\).}
+Aby potwierdzić, że faktycznie zachodzi diagonalizacja, można obliczyć:
+\[
+P\,D\,P^{-1}
+\quad\text{oraz porównać z}\quad
+M.
+\]
+W przypadku poprawnego doboru \(P\) i \(D\) otrzymamy dokładnie macierz \(M\).
+
+% -------------- Diagonalizacja macierzy ----------------
+
+
+
+
+\noindent
+Macierz skalowania w trójwymiarowej przestrzeni można zapisać jako:
+\[
+S(\alpha,\beta,\gamma) 
+\;=\;
+\begin{pmatrix}
+\alpha & 0      & 0 \\
+0      & \beta  & 0 \\
+0      & 0      & \gamma
+\end{pmatrix},
+\]
+gdzie \(\alpha,\beta,\gamma\) to dodatnie liczby rzeczywiste.
+
+\bigskip
+\noindent
+Działanie tej transformacji na wektor \(\mathbf{V} = (V_x, V_y, V_z)^\top\) daje wektor
+\[
+\mathbf{V}' \;=\; S(\alpha,\beta,\gamma)\,\mathbf{V}
+\;=\;
+\begin{pmatrix}
+\alpha\,V_x \\
+\beta\,V_y \\
+\gamma\,V_z
+\end{pmatrix}.
+\]
 
