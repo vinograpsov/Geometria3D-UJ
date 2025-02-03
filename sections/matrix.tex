@@ -164,6 +164,27 @@ Działanie tej transformacji na wektor \(\mathbf{V} = (V_x, V_y, V_z)^\top\) daj
 
 \subsection*{7. Siatka geometryczna obiektu zawiera punkty \( P_1, P_2, P_3, P_4 \). Oblicz pozycję punktów \( P_1', P_2', P_3', P_4' \), które powstaną po zastosowaniu do nich macierzy skalowania \( S \) względem punktu \( P_T \).}
 
+\noindent
+Przy skalowaniu punktu $\mathbf{P}$ względem tzw.\ pivotu (punktu odniesienia) $P_T$
+z~użyciem macierzy skalowania $S$ (np.\ $3\times 3$), nowa pozycja $\mathbf{P}'$ wyznaczana jest ze wzoru:
+\[
+\mathbf{P}' 
+\;=\;
+\mathbf{P}_T \;+\; S\,\bigl(\mathbf{P} - \mathbf{P}_T\bigr).
+\]
+
+\medskip
+\noindent
+\textbf{Algorytm (krok po kroku):}
+\begin{enumerate}
+    \item \emph{Przesunięcie pivotu do początku:} oblicz $\mathbf{P} - \mathbf{P}_T$.
+    \item \emph{Skalowanie:} pomnóż otrzymany wektor przez macierz $S$, czyli 
+          $S \bigl(\mathbf{P} - \mathbf{P}_T\bigr)$.
+    \item \emph{Przesunięcie z powrotem:} dodaj $\mathbf{P}_T$,
+          otrzymując $\mathbf{P}' = \mathbf{P}_T + S\bigl(\mathbf{P} - \mathbf{P}_T\bigr)$.
+\end{enumerate}
+
+
 \begin{enumerate}
     \item[(a)] 
     \[
@@ -207,6 +228,53 @@ Działanie tej transformacji na wektor \(\mathbf{V} = (V_x, V_y, V_z)^\top\) daj
 
 \subsection*{8. Wyznacz wektor \( \mathbf{V'} \) będący wektorem powstałym w wyniku obrotu wektora \( \mathbf{V} \) o kąt \( \alpha \) w osi \( \mathbf{Z} \).}
 
+
+
+\[
+R_x(\theta) \;=\;
+\begin{pmatrix}
+1 & 0 & 0 \\
+0 & \cos\theta & -\sin\theta \\
+0 & \sin\theta & \cos\theta
+\end{pmatrix},
+\quad
+R_y(\theta) \;=\;
+\begin{pmatrix}
+\cos\theta & 0 & \sin\theta \\
+0 & 1 & 0 \\
+-\sin\theta & 0 & \cos\theta
+\end{pmatrix},
+\quad
+R_z(\theta) \;=\;
+\begin{pmatrix}
+\cos\theta & -\sin\theta & 0 \\
+\sin\theta & \cos\theta & 0 \\
+0 & 0 & 1
+\end{pmatrix}.
+\]
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{c|c|c|c}
+    \hline
+    \textbf{Kąt} & \textbf{Kąt w radianach} & \(\sin(\theta)\) & \(\cos(\theta)\) \\
+    \hline
+    \(0^\circ\)   & \(0\)                   & \(0\)                  & \(1\)                   \\
+    \(30^\circ\)  & \(\frac{\pi}{6}\)       & \(\frac{1}{2}\)        & \(\frac{\sqrt{3}}{2}\)  \\
+    \(45^\circ\)  & \(\frac{\pi}{4}\)       & \(\frac{\sqrt{2}}{2}\) & \(\frac{\sqrt{2}}{2}\)  \\
+    \(60^\circ\)  & \(\frac{\pi}{3}\)       & \(\frac{\sqrt{3}}{2}\) & \(\frac{1}{2}\)         \\
+    \(90^\circ\)  & \(\frac{\pi}{2}\)       & \(1\)                  & \(0\)                   \\
+    \(120^\circ\) & \(\frac{2\pi}{3}\)      & \(\frac{\sqrt{3}}{2}\) & \(-\tfrac{1}{2}\)       \\
+    \(135^\circ\) & \(\frac{3\pi}{4}\)      & \(\tfrac{\sqrt{2}}{2}\)& \(-\tfrac{\sqrt{2}}{2}\)\\
+    \(150^\circ\) & \(\frac{5\pi}{6}\)      & \(\tfrac{1}{2}\)       & \(-\tfrac{\sqrt{3}}{2}\)\\
+    \(180^\circ\) & \(\pi\)                 & \(0\)                  & \(-1\)                  \\
+    \hline
+    \end{tabular}
+    \caption{Podstawowe wartości \(\sin\theta\) i~\(\cos\theta\) dla najważniejszych kątów (w~stopniach i~radianach).}
+    \label{tab:sin-cos-extended}
+    \end{table}
+
+
 \begin{enumerate}
     \item[(a)] 
     \[
@@ -245,8 +313,105 @@ Macierz obrotu wokół osi \( Z \) ma postać:
 
 
 
+
+
+
+
 \subsection*{10. Pracując we współrzędnych jednorodnych zbuduj macierz transformacji \( \mathbf{F} \) pozwalającą wykonać operację skalowania \( \mathbf{S} \) oraz translacji \( \mathbf{T} \) jednocześnie. 
 Oblicz pozycję punktów \( P_1', P_2', P_3' \), które powstaną po zastosowaniu do nich macierzy transformacji \( \mathbf{F} \).}
+
+
+\noindent
+W~układzie współrzędnych jednorodnych trójwymiarowy punkt 
+\[
+\mathbf{P} 
+\;=\; 
+(x,\;y,\;z)
+\]
+zapisujemy jako wektor 4D:
+\[
+\widetilde{\mathbf{P}}
+\;=\;
+\begin{pmatrix}
+x\\[3pt]
+y\\[3pt]
+z\\[3pt]
+1
+\end{pmatrix}.
+\]
+
+\medskip
+
+\noindent
+Jeśli chcemy wykonać \emph{jednocześnie} skalowanie o~współczynniki 
+\(S_x, S_y, S_z\) oraz translację o~wektor \(\mathbf{T} = (T_x, T_y, T_z)\),
+to stosujemy macierz \(\mathbf{F} \in \mathbb{R}^{4\times 4}\) w~postaci:
+\[
+\mathbf{F}
+\;=\;
+\begin{pmatrix}
+S_x & 0   & 0   & T_x \\[4pt]
+0   & S_y & 0   & T_y \\[4pt]
+0   & 0   & S_z & T_z \\[4pt]
+0   & 0   & 0   & 1
+\end{pmatrix}.
+\]
+
+\medskip
+
+\noindent
+Wtedy \emph{nowy} punkt 
+\(\mathbf{P}' = (x',\,y',\,z')\)
+otrzymujemy przez wymnożenie:
+\[
+\widetilde{\mathbf{P}}'
+\;=\;
+\mathbf{F}\,\widetilde{\mathbf{P}}
+\;\quad\Longrightarrow\quad
+\mathbf{P}'
+\;=\;
+\bigl(x',\,y',\,z'\bigr).
+\]
+Dokładniej:
+\[
+\underbrace{
+\begin{pmatrix}
+x'\\[3pt]
+y'\\[3pt]
+z'\\[3pt]
+1
+\end{pmatrix}
+}_{\widetilde{\mathbf{P}}'}
+\;=\;
+\underbrace{
+\begin{pmatrix}
+S_x & 0   & 0   & T_x \\[4pt]
+0   & S_y & 0   & T_y \\[4pt]
+0   & 0   & S_z & T_z \\[4pt]
+0   & 0   & 0   & 1
+\end{pmatrix}
+}_{\mathbf{F}}
+\cdot
+\underbrace{
+\begin{pmatrix}
+x\\[2pt]
+y\\[2pt]
+z\\[2pt]
+1
+\end{pmatrix}
+}_{\widetilde{\mathbf{P}}}
+=
+\begin{pmatrix}
+S_x\,x + T_x\\[3pt]
+S_y\,y + T_y\\[3pt]
+S_z\,z + T_z\\[3pt]
+1
+\end{pmatrix}.
+\]
+Widać, że \(\mathbf{P}'\) to najpierw \emph{skalowanie} współrzędnych 
+\((x,y,z)\)
+wzdłuż każdej osi, a~następnie \emph{przesunięcie} o~\(\bigl(T_x, T_y, T_z\bigr)\).
+
 
 \begin{enumerate}
     \item[(a)] 

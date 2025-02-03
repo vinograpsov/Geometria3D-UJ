@@ -60,6 +60,14 @@ Dane są płaszczyzny \( A, B, C \) zdefiniowane macierzą punktów:
 \subsection*{4. Sprawdź czy punkty \( P_1 \) i \( P_2 \) leżą wewnątrz bryły widzenia (frustum) zdefiniowanej płaszczyznami:}
 
 \[
+\forall i \in \{1,2,\dots,6\}
+:\quad
+n_{i,x}\,x \;+\; n_{i,y}\,y \;+\; n_{i,z}\,z \;+\; d_i \;\;\ge\; 0.
+\]
+
+\text{(Jeśli powyższy warunek jest spełniony dla każdego }i,\text{ punkt jest wewnątrz frustum.)}
+
+\[
 \begin{array}{c|cccccc}
     & \text{bliska} & \text{daleka} & \text{lewa} & \text{prawa} & \text{górna} & \text{dolna} \\
     \hline
@@ -77,6 +85,13 @@ P_2 = \begin{bmatrix} 0 \\ 10 \\ -5 \end{bmatrix}
 
 
 \subsection*{5. Sprawdź czy sfery w punktach \( P_1 \) i \( P_2 \), i promieniach \( r_1 \) i \( r_2 \) leżą wewnątrz bryły widzenia (frustum) zdefiniowanej płaszczyznami:}
+
+\[
+\forall i \in \{1,2,\dots,6\}
+:\quad
+n_{i,x}\,x \;+\; n_{i,y}\,y \;+\; n_{i,z}\,z \;+\; d_i \;\;\ge\; r.
+\]
+
 
 \[
 \begin{array}{c|cccccc}
